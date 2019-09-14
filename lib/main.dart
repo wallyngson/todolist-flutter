@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:todolist/models/item.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,18 +18,39 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+
+  var items = List<Item>();
+
+  HomePage() {
+    items = [];
+
+    items.add((Item(title: 'milk', done: false)));
+    items.add((Item(title: 'coffe', done: true)));
+    items.add((Item(title: 'bread', done: false)));
+
+  }
+  
+  @override
+  _HomePageState createState() => _HomePageState();
+
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('TodoList'),
+      appBar: AppBar( 
+        title: Text('Simple TodoList'),
+        backgroundColor: Colors.green,
       ),
 
-      body: Container(
-        child: Center(
-          child: Text('Hello World!'),
-        ),
+      body: ListView.builder(
+        itemCount: widget.items.length,
+        itemBuilder: (BuildContext ctxtm, int index) {
+          return Text(widget.items[index].title);
+        },
+
       ),
     );
   }
