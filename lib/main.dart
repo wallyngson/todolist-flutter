@@ -37,12 +37,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var newTextCrtl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( 
-        title: Text('Simple TodoList'),
-        backgroundColor: Colors.green,
+        title: TextFormField(
+          controller: newTextCrtl,
+          keyboardType: TextInputType.text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+          ),
+          decoration: InputDecoration(
+            labelText: 'New todo...',
+            labelStyle: TextStyle(color: Colors.white),
+          ),
+          cursorColor: Colors.white,
+        ),
       ),
 
       body: ListView.builder(
@@ -54,6 +67,7 @@ class _HomePageState extends State<HomePage> {
             title: Text(item.title),
             key: Key(item.title),
             value: item.done,
+            activeColor: Colors.red,
             onChanged: (value) {
               setState(() {
                item.done = value; 
