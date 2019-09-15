@@ -39,7 +39,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var newTextCrtl = TextEditingController();
 
-  @override
+  void addItem() {
+    if (newTextCrtl.text.isEmpty) return;
+    
+    setState(() {
+     widget.items.add(
+       Item(
+         title: newTextCrtl.text,
+          done: false)
+          );
+     newTextCrtl.text = ''; 
+    });
+  }
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( 
@@ -74,9 +87,13 @@ class _HomePageState extends State<HomePage> {
               });
             },
           );
-
         },
-
+      ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: addItem,
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
       ),
     );
   }
