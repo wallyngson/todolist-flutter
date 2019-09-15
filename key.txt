@@ -1,0 +1,8 @@
+senha keystore: wesg02061997
+name: wallyngson guedes
+organization: waves.co
+city: campina grande
+city sigla: cg
+
+CN=wallyngson guedes, OU=waves.co, O=waves.co, L=campina grande, ST=paraiba, C=cg correct?
+yes
