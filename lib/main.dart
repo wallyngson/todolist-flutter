@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'TodoList',
       theme: ThemeData(
         primarySwatch: Colors.red,
@@ -27,9 +28,9 @@ class HomePage extends StatefulWidget {
   HomePage() {
     items = [];
 
-   // items.add((Item(title: 'milk', done: false)));
-   // items.add((Item(title: 'coffe', done: true)));
-   // items.add((Item(title: 'bread', done: false)));
+  // items.add((Item(title: 'milk', done: false)));
+  // items.add((Item(title: 'coffe', done: true)));
+  // items.add((Item(title: 'bread', done: false)));
 
   }
   
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
 
     if (data != null) {
       Iterable decoded = jsonDecode(data);
-      List<Item> result = decoded.map((x) => Item.fromJSON(x)).toList();
+      List<Item> result = decoded.map((x) => Item.fromJson(x)).toList();
 
       setState(() {
        widget.items = result; 
@@ -76,10 +77,10 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  save() async {
-    var prefs = await SharedPreferences.getInstance();
-    await prefs.setString('data', jsonEncode(widget.items));
-  }
+   save() async {
+     var prefs = await SharedPreferences.getInstance();
+     await prefs.setString('data', jsonEncode(widget.items));
+   }
 
   _HomePageState() {
     load();

@@ -4,12 +4,12 @@ class Item {
 
   Item({this.title, this.done}); // constructor
 
-  Item.fromJSON(Map<String, dynamic> json) {
+  Item.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     done = json['done'];
   }
 
-  Map<String, dynamic> toJSON() {
+  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['title'] = this.title;
     data['done'] = this.done;
