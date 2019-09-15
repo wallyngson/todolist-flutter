@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
             fontSize: 18,
           ),
           decoration: InputDecoration(
-            labelText: 'new activity...',
+            labelText: 'New taks...',
             labelStyle: TextStyle(color: Colors.white, fontSize: 14),
           ),
           cursorColor: Colors.white,
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
           background: Container(
             color: Colors.red,
             child: Icon(
-              Icons.remove_circle, 
+              Icons.delete, 
               color: Colors.white,)
               ),
             onDismissed: (direction) {
