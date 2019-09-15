@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:todolist/models/item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -56,6 +58,21 @@ class _HomePageState extends State<HomePage> {
     setState(() {
      widget.items.removeAt(index); 
     });
+  }
+
+  Future load() async {
+    var prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString('data');
+
+    if (data != null) {
+      Iterable decoded = jsonDecode(data);
+      List<Item> result = decoded.map((x) => Item.fromJSON(x)).toList();
+
+      setState(() {
+       widget.items = result; 
+      });
+    }
+
   }
 
    @override
