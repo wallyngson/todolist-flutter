@@ -25,9 +25,9 @@ class HomePage extends StatefulWidget {
   HomePage() {
     items = [];
 
-    items.add((Item(title: 'milk', done: false)));
-    items.add((Item(title: 'coffe', done: true)));
-    items.add((Item(title: 'bread', done: false)));
+   // items.add((Item(title: 'milk', done: false)));
+   // items.add((Item(title: 'coffe', done: true)));
+   // items.add((Item(title: 'bread', done: false)));
 
   }
   
@@ -52,6 +52,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void removeItem(int index) {
+    setState(() {
+     widget.items.removeAt(index); 
+    });
+  }
+
    @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,8 +70,8 @@ class _HomePageState extends State<HomePage> {
             fontSize: 18,
           ),
           decoration: InputDecoration(
-            labelText: 'New todo...',
-            labelStyle: TextStyle(color: Colors.white),
+            labelText: 'new activity...',
+            labelStyle: TextStyle(color: Colors.white, fontSize: 14),
           ),
           cursorColor: Colors.white,
         ),
@@ -76,15 +82,27 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (BuildContext ctxtm, int index) {
           final item = widget.items[index];
 
-          return CheckboxListTile(
+          return Dismissible(
+            child: CheckboxListTile(
             title: Text(item.title),
-            key: Key(item.title),
             value: item.done,
             activeColor: Colors.red,
             onChanged: (value) {
               setState(() {
                item.done = value; 
               });
+            },
+          ),
+
+          key: Key(item.title),
+          background: Container(
+            color: Colors.red,
+            child: Icon(
+              Icons.remove_circle, 
+              color: Colors.white,)
+              ),
+            onDismissed: (direction) {
+              removeItem(index);
             },
           );
         },
