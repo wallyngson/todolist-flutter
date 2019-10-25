@@ -28,9 +28,9 @@ class HomePage extends StatefulWidget {
   HomePage() {
     items = [];
 
-  // items.add((Item(title: 'milk', done: false)));
-  // items.add((Item(title: 'coffe', done: true)));
-  // items.add((Item(title: 'bread', done: false)));
+  items.add((Item(title: 'eat', done: true)));
+  items.add((Item(title: 'code', done: true)));
+  items.add((Item(title: 'coffe', done: true)));
 
   }
   
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
             fontSize: 18,
           ),
           decoration: InputDecoration(
-            labelText: 'New taks...',
+            labelText: 'New task for today?',
             labelStyle: TextStyle(color: Colors.white, fontSize: 14),
           ),
           cursorColor: Colors.white,
